@@ -562,10 +562,6 @@ src/
 
 ISC License - see package.json for details
 
-## Credits
-
-Original project by JuanjoFuchs and TRANZACT.
-
 ## Contributing
 
 Contributions are welcome! Please follow the existing code style and ensure all tools work correctly with real Tempo API endpoints.
