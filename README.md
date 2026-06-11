@@ -55,6 +55,60 @@ The install button configures the Server/Data Center mode. Jira Cloud users shou
 
 The desktop extension currently prompts for Server/Data Center credentials. Jira Cloud users should use the manual Cloud configuration below.
 
+### Install from this repository locally
+
+Use this when testing this fork or unpublished local changes. The VS Code button, Claude Desktop extension link, and `npx` examples use the published upstream package; a local MCP install should point directly at the built server file.
+
+1. **Clone and build this repository**:
+
+   ```bash
+   git clone https://github.com/lbr88/tempo-filler-mcp-server.git
+   cd tempo-filler-mcp-server
+   npm install
+   npm run build
+   pwd
+   ```
+
+2. **Use the absolute path from `pwd` in your MCP config**.
+
+   Jira Server/Data Center:
+
+   ```json
+   {
+     "mcpServers": {
+       "tempo-filler-local": {
+         "command": "node",
+         "args": ["/absolute/path/to/tempo-filler-mcp-server/dist/index.js"],
+         "env": {
+           "TEMPO_BASE_URL": "https://jira.company.com",
+           "TEMPO_PAT": "your-jira-personal-access-token"
+         }
+       }
+     }
+   }
+   ```
+
+   Jira Cloud + Tempo Cloud:
+
+   ```json
+   {
+     "mcpServers": {
+       "tempo-filler-local": {
+         "command": "node",
+         "args": ["/absolute/path/to/tempo-filler-mcp-server/dist/index.js"],
+         "env": {
+           "JIRA_BASE_URL": "https://your-site.atlassian.net",
+           "JIRA_EMAIL": "you@example.com",
+           "JIRA_API_TOKEN": "your-atlassian-api-token",
+           "TEMPO_TOKEN": "your-tempo-api-token"
+         }
+       }
+     }
+   }
+   ```
+
+For Claude Desktop, add the server object under `mcpServers` in `claude_desktop_config.json`. For VS Code, add the same server object to your MCP configuration.
+
 ### Install Manually on your favorite AI Assistant
 
 #### Jira Server/Data Center
@@ -229,8 +283,8 @@ For development or customization:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/TRANZACT/tempo-filler-mcp-server
-   cd TempoFiller
+   git clone https://github.com/lbr88/tempo-filler-mcp-server.git
+   cd tempo-filler-mcp-server
    ```
 
 2. **Install dependencies and build**:
